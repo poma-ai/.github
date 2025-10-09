@@ -1,3 +1,6 @@
+![POMA AI Logo](https://raw.githubusercontent.com/poma-ai/.github/main/assets/POMA_AI_Logo_Pink.svg)
+
+
 # 📚 POMA: Preserving Optimal Markdown Architecture
 
 Most RAG tools split documents linearly and destroy structure, causing hallucinations, context loss, and token waste. POMA AI solves this by preserving the document's implicit textual structure tree, enabling context-preserving retrieval.
