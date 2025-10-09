@@ -78,6 +78,8 @@ We provide four example implementations to help you get started with POMA AI:
 
 All examples follow the same two-phase process (ingest → retrieve) but demonstrate different integration options for your RAG pipeline.
 
+! Please do NOT send any sensitive and/or personal information to POMA AI endpoints without having a signed contract & DPA !
+
 ---
 
 ## 🔗 Quick Links
@@ -270,6 +272,8 @@ Models and credentials:
 - For POMA AI's API for chunking your documents, you’ll need credentials in the form of a POMA_API_KEY. Please contact us at [support@poma-ai.com](mailto:support@poma-ai.com) to request one.
 - Model/provider for the usage of integrations; ensure your API keys for embeddings are set as environment variables (e.g., OPENAI_API_KEY).
 - Recommended: OpenAI's "text-embedding-3-large" as embeddings for retrieval.
+
+! Please do NOT send any sensitive and/or personal information to POMA AI endpoints without having a signed contract & DPA !
 
 ---
 
