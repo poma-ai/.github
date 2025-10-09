@@ -66,7 +66,7 @@ pip install poma[integration-examples]
 - **To request a POMA_API_KEY, please contact us at [support@poma-ai.com](mailto:support@poma-ai.com)**
 
 
-### Example Implementations - all examples -> [examples/](https://github.com/poma-ai/poma/tree/main/examples)
+### Example Implementations - all examples -> [examples/](https://github.com/poma-ai/.github/tree/main/examples)
 
 We provide four example implementations to help you get started with POMA AI:
 - example.py — A standalone implementation for documents, showing the basic POMA AI workflow with simple keyword-based retrieval
@@ -191,7 +191,7 @@ python example.py retrieve "finland"
 
 ---
 
-### 1) Standalone Example ([example.py](https://github.com/poma-ai/poma/tree/main/examples/example.py)) 
+### 1) Standalone Example ([example.py](https://github.com/poma-ai/.github/tree/main/examples/example.py)) 
 A complete, self-contained implementation that demonstrates the core POMA AI workflow.
 
 - Ingest: Converts documents to POMA AI format, processes into chunks/chunksets, stores locally
@@ -203,7 +203,7 @@ Key features:
 - Detailed structure-aware output
 - Minimal dependencies (POMA AI core)
 
-### 2) LangChain Integration ([example_langchain.py](https://github.com/poma-ai/poma/tree/main/examples/example_langchain.py))
+### 2) LangChain Integration ([example_langchain.py](https://github.com/poma-ai/.github/tree/main/examples/example_langchain.py))
 Integrate POMA AI with LangChain’s retrieval and QA components.
 
 - Uses: PomaFileLoader, PomaChunksetSplitter, PomaCheatsheetRetrieverLC - from poma.integrations.langchain_poma
@@ -213,7 +213,7 @@ Integrate POMA AI with LangChain’s retrieval and QA components.
 - Custom cheatsheet retriever for context-aware retrieval
 
 
-### 3) LlamaIndex Integration ([example_llamaindex.py](https://github.com/poma-ai/poma/tree/main/examples/example_llamaindex.py))
+### 3) LlamaIndex Integration ([example_llamaindex.py](https://github.com/poma-ai/.github/tree/main/examples/example_llamaindex.py))
 Use POMA AI with LlamaIndex’s document processing and query engine.
 
 - Uses: PomaFileReader, PomaChunksetNodeParser, PomaCheatsheetRetrieverLI - from poma.integrations.llamaindex_poma
