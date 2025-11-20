@@ -197,7 +197,7 @@ python example.py retrieve "finland"
 A complete, self-contained implementation that demonstrates the core POMA AI workflow.
 
 - Ingest: Converts documents to POMA AI format, processes into chunks/chunksets, stores locally
-- Retrieve: Simple keyword matching to find relevant chunksets and generate a cheatsheet
+- Retrieve: Simple keyword matching to find relevant chunksets and generate cheatsheets (one per involved document)
 
 Key features:
 - CLI with ingest and retrieve commands
@@ -303,7 +303,7 @@ search/retrieve ----> Retrieve relevant chunksets (context trees)
                         Get chunks with content for IDs
                                     |
                                     v
-            client.generate_cheatsheet/s(relevant_chunksets, all_chunks)
+            client.generate_cheatsheets(relevant_chunksets, all_chunks)
                                     |
                                     v
                      Use cheatsheet(s) in LLM prompt
@@ -373,59 +373,32 @@ This two-phase approach ensures full structure preservation, enabling accurate r
 ## 🛠️Complete End-to-End Workflow
 
 - Content Chunking: `client.start_chunk_file(src_path)` → chunks + chunksets (then save/embed/index)
-- Chunkset Retrieval: Use your vector or full-text search to retrieve relevant chunksets
+- Chunkset Retrieval: Use your vector or full-text search to retrieve relevant chunksets (they could be from different documents)
   1. Retrieval of `relevant_chunksets` (e.g., via a vector database)
   2. Retrieval/Fetch of `chunks` belonging to the documents inside the retrieved relevant_chunksets
   *- We recommend storing the chunks separately in a relational database for faster and safer vector database retrieval*
-- Cheatsheet Generation: `client.generate_cheatsheet(relevant_chunksets, chunks)` to create a concise, structured context for the LLM prompt
+- Cheatsheet Generation: `client.generate_cheatsheets(relevant_chunksets, all_chunks)` to create concise, structured context for the LLM prompt
 
 ### Example: Chunk ID Enrichment and Cheatsheet Assembly
 
-At retrieval time, work with the embedded chunksets, not isolated chunks.
+At retrieval time, work with the embedded chunksets, not with isolated chunks.
 
 - Use your embedding/RAG stack to retrieve relevant chunksets
-- Pass them together with their chunk IDs to:
+- Pass them together with the original chunks to:
 
 ```python
-cheatsheet = client.generate_cheatsheet(relevant_chunksets, document_chunks)
+cheatsheets = client.generate_cheatsheets(relevant_chunksets, all_chunks_of_affected_documents)
 ```
 
-`generate_cheatsheet()`:
-- Deduplicates overlapping chunk IDs
+`generate_cheatsheets()`:
+- Deduplicates overlapping chunk IDs (per document)
 - Adds parents, children, and adjacent chunks as needed to ensure structural continuity
 - Returns a complete set of Chunk objects (content + metadata) for final context assembly
-
-Input (example):
-
-```python
-# Vector search returns these chunksets (complete root-to-leaf paths)
-retrieved_chunksets = [
-    [0, 1, 132, 133, 194, 195, 196, 197, 198, 199, 200, 201],   # Article 26 path
-    [0, 1, 207, 208, 217, 218, 219],                            # Article 30 path
-    [0, 1, 162, 163, 172, 173, 174]                             # Article 21 path
-]
-# Flatten to one list of IDs
-chunk_ids = [
-    0, 1, 132, 133, 194, 195, 196, 197, 198, 199, 200, 201,
-    0, 1, 207, 208, 217, 218, 219,
-    0, 1, 162, 163, 172, 173, 174
-]
-```
-
-Output (conceptual, IDs only for brevity):
-```
-[
-  0, 1,
-  132, 133, 162, 163, 172, 173, 174,
-  194, 195, 196, 197, 198, 199, 200, 201,
-  207, 208, 217, 218, 219
-]
-```
 
 ### Cheatsheet Assembly (Final LLM Input)
 
 ```python
-cheatsheet = client.generate_cheatsheet(all_relevant_chunks, all_chunks_of_the_docs)
+cheatsheets = client.generate_cheatsheets(relevant_chunks, all_chunks_of_affected_documents)
 ```
 
 Cheatsheet characteristics:
