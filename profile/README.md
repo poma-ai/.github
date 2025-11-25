@@ -55,9 +55,9 @@ pip install poma
 
 For integrations into LangChain and LlamaIndex:
 ```bash
-pip install poma[integrations]
+pip install 'poma[integrations]'
 # Or LangChain/LlamaIndex including example extras:
-pip install poma[integration-examples]
+pip install 'poma[integration-examples]'
 ```
 
 
@@ -256,9 +256,9 @@ pip install poma
 For the integration examples:
 
 ```bash
-pip install poma[integrations]
+pip install 'poma[integrations]'
 # LangChain|LlamaIndex examples
-pip install poma[integration-examples]
+pip install 'poma[integration-examples]'
 ```
 
 Packages:
@@ -394,6 +394,21 @@ cheatsheets = client.generate_cheatsheets(relevant_chunksets, all_chunks_of_affe
 - Deduplicates overlapping chunk IDs (per document)
 - Adds parents, children, and adjacent chunks as needed to ensure structural continuity
 - Returns a complete set of Chunk objects (content + metadata) for final context assembly
+
+Input (example):
+
+```python
+# Vector search returns chunksets (complete root-to-leaf paths)
+retrieved_chunksets = [
+  {"chunks": [0, 10, 16, 17], "chunkset_index": 0, "file_id": "doc_1"},
+  {"chunks": [0, 4, 5, 6], "chunkset_index": 1, "file_id": "doc_2"}
+]
+```
+
+Output (conceptual, IDs only for brevity):
+```
+[0, 4, 5, 6, 10, 16, 17]
+```
 
 ### Cheatsheet Assembly (Final LLM Input)
 
