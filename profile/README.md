@@ -47,7 +47,7 @@ pip install poma
 
 > [!IMPORTANT]  
 > Requires Python 3.10+  
-> Requires `POMA_API_KEY` as env variable, get it [here]() or contact us at **[support@poma-ai.com](mailto:support@poma-ai.com)**
+> Requires `POMA_API_KEY` as env variable (get it [here](https://app.poma-ai.com) by selecting your plan or contact us at **[support@poma-ai.com](mailto:support@poma-ai.com)**)
 
 The poma client then offers three endpoints:
 - Use `start_chunk_file()` to start the chunking process.
