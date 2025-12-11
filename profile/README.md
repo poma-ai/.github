@@ -32,7 +32,7 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
 - [Installation](#SDK-Installation)
 - [Example Integrations](#Integrations)
 - [Why POMA AI?](#why-poma-ai)
-- [How POMA AI Works](#how-poma-ai-works-the-structural-chunking-workflow)
+- [How POMA AI Works](#How-POMA-AI-Works---The-Structural-Chunking-Workflow)
 - [Real-World Performance Example](#real-world-performance-example)
 - [FAQ](#faq)
 - [Licensing](#Licensing)
@@ -54,7 +54,7 @@ The poma client then offers three endpoints:
 - With `get_chunk_result()` you can download the result after it finished processing.
 - And `create_cheatsheets()` is used at retrieval time.  
 
-See [How POMA AI Works](#how-poma-ai-works-the-structural-chunking-workflow) for more details in the workflow.
+See [How POMA AI Works](#How-POMA-AI-Works---The-Structural-Chunking-Workflow) for more details in the workflow.
 
 > [!WARNING]  
 > *Please do NOT send any sensitive and/or personal information to POMA AI endpoints without having a signed contract & DPA !*
