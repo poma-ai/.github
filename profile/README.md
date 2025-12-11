@@ -29,7 +29,7 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
 
 ---
 
-- [Installation](#Installation-(sdk))
+- [Installation](#SDK-Installation)
 - [Example Integrations](#Integrations)
 - [Why POMA AI?](#why-poma-ai)
 - [How POMA AI Works](#how-poma-ai-works-the-structural-chunking-workflow)
@@ -39,7 +39,7 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
 
 ---
 
-## Installation (SDK)
+## SDK Installation
 
 ```bash
 pip install poma
