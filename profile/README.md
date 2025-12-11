@@ -109,7 +109,7 @@ python example.py retrieve "finland"
 
 Integrate POMA AI with LangChain’s retrieval and QA components.
 
-- Uses PomaFileLoader, PomaChunksetSplitter, PomaCheatsheetRetrieverLC from poma.integrations.langchain_poma
+- Uses PomaFileLoader, PomaChunksetSplitter, PomaCheatsheetRetrieverLC from `poma.integrations.langchain_poma
   and POMA AI's API to chunk text.
 - Stores *chunks* and *[chunksets](#what-exactly-is-a-chunkset)* in LangChains Document Metadata for later retrieval.
 - FAISS vector search with OpenAI embeddings — Make sure to set your `OPENAI_API_KEY` as environment variable.
@@ -120,7 +120,7 @@ Integrate POMA AI with LangChain’s retrieval and QA components.
 
 Use POMA AI with LlamaIndex’s document processing and query engine.
 
-- Uses PomaFileReader, PomaChunksetNodeParser, PomaCheatsheetRetrieverLI from poma.integrations.llamaindex_poma
+- Uses PomaFileReader, PomaChunksetNodeParser, PomaCheatsheetRetrieverLI from `poma.integrations.llamaindex_poma`
   and POMA AI's API to chunk text.
 - Stores *chunks* and *[chunksets](#what-exactly-is-a-chunkset)* in LlamaIndex Nodes Metadata for later retrieval.
 - VectorStoreIndex (implemented with FAISS) and OpenAI embeddings — Make sure to set your `OPENAI_API_KEY` as environment variable.
@@ -240,7 +240,7 @@ chunks, chunksets = result["chunks"], result["chunksets"]
 ```
 chunks[{'chunk_index': 0, 'content': 'some text', 'depth': 0}, ...]
 ```
-*We recommend storing the chunks separately in a relational database for faster and safer retrieval*
+*We recommend storing the chunks separately in a relational database for faster and safer retrieval.*
 
 ### Step 1.2 - Building Chunksets
 
@@ -329,7 +329,7 @@ cheatsheets = client.generate_cheatsheets(relevant_chunksets, all_necessary_chun
 
 POMA AI significantly outperforms traditional chunking in token efficiency and retrieval accuracy. While a dedicated benchmark repo is pending, real-world comparisons show substantial improvements.
 
-To illustrate with a (very) niche example: a legal-document query about Andorra’s personalized license-plate law (a notoriously tough document for RAGs) needed **1,542 tokens** of retrieved context with traditional RAG, versus **337 tokens** with POMA ( a roughly80% reduction), with zero information loss.
+To illustrate with a (very) niche example: a legal-document query about Andorra’s personalized license-plate law (a notoriously tough document for RAGs) needed **1,542 tokens** of retrieved context with traditional RAG, versus **337 tokens** with POMA (a roughly 80% reduction), with zero information loss.
 
 This efficiency enables energy and cost savings and/or more context within token limits.
 
