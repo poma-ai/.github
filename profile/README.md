@@ -13,7 +13,7 @@ Retrieval-augmented generation (RAG) enables LLMs to better answer questions by 
 
 POMA AI solves this by preserving the **structural tree** of your documents when chunking them, enabling **context-preserving retrieval**, so every answer comes with context, not confusion.
 
-Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it with *LlamaIndex*, *LangChain*, *Haystack*, *Weaviate*, *Pinecone*, etc. POMA AI works both **vector search** and **keyword/fulltext search** backends.
+Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it with *LlamaIndex*, *LangChain*, *Haystack*, *Weaviate*, *Pinecone*, etc. POMA AI works with both **vector search** and **keyword/fulltext search** backends.
 
 ### Features
 
@@ -47,7 +47,7 @@ pip install poma
 
 > [!IMPORTANT]  
 > Requires Python 3.10+  
-> Requires `POMA_API_KEY` as env variable (get it [here](https://app.poma-ai.com) by selecting your plan or contact us at **[support@poma-ai.com](mailto:support@poma-ai.com)**)
+> Requires `POMA_API_KEY` as env variable (sign up for free and get it [here](https://app.poma-ai.com).
 
 The poma client then offers three endpoints:
 - Use `start_chunk_file()` to start the chunking process.
@@ -57,7 +57,7 @@ The poma client then offers three endpoints:
 See [How POMA AI Works](#How-POMA-AI-Works---The-Structural-Chunking-Workflow) for more details in the workflow.
 
 > [!WARNING]  
-> *Please do NOT send any sensitive and/or personal information to POMA AI endpoints without having a signed contract & DPA !*
+> *Please do NOT send any sensitive and/or personal information to POMA AI endpoints without a signed contract & DPA !*
 
 ---
 
