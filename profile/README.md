@@ -1,8 +1,9 @@
 ![POMA AI Logo](https://raw.githubusercontent.com/poma-ai/.github/main/assets/POMA_AI_Logo_Pink.svg)
 
-[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)  
-(patented at USPTO and DPA)  
-(pypi)
+[![](https://img.shields.io/badge/patented%20at%20USPTO-8A2BE2)]() 
+[![](https://img.shields.io/badge/patented%20at%20DPA-8A2BE2)]() 
+[![](https://img.shields.io/badge/pypi-repo-blue?logo=pypi)](https://pypi.org/project/poma/) 
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)   
  
 ## Problem
 
@@ -20,30 +21,43 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
 - LLM-friendly data extraction for precise retrieval
 - up to 90% token savings in prompt context for structured docs
 - Plug-in to any RAG pipeline
-- Supported input types: pdf, md, html (raw structural DOM), txt, ... ??? (full list as collapsible)
+- Supported input types:
+  <details>
+  <summary> .pdf, .md, .html, .txt, and many more</summary>
+   ['ai', 'bmp', 'csv', 'djvu', 'doc', 'docx', 'dotx', 'dwf', 'dwfx', 'dwg', 'dxf', 'eps', 'epub', 'gif', 'heic', 'heif', 'htm', 'html', 'ico', 'jpeg', 'jpg', 'key', 'md', 'mdi', 'mobi', 'numbers', 'odc', 'odf', 'odp', 'ods', 'odt', 'oxps', 'pages', 'pdf', 'png', 'pot', 'potx', 'pps', 'ppsx', 'ppt', 'pptx', 'prn', 'ps', 'psd', 'pub', 'rtf', 'svg', 'tif', 'tiff', 'txt', 'vsd', 'vsdx', 'webp', 'xls', 'xlsb', 'xlsx', 'xltx', 'xml', 'xps']
+  </details>
 
 ---
 
 - [Installation](#Installation)
 - [Example Integrations](#Integrations)
 - [Why POMA AI?](#why-poma-ai)
-- [How POMA AI Works](#how-poma-ai-works-structural-chunking)
+- [How POMA AI Works](#how-poma-ai-works-the-structural-chunking-workflow)
 - [Real-World Performance Example](#real-world-performance-example)
-- [Licensing](#Licensing)
-- [Release History (SDK)](#Release-History-(SDK))
 - [FAQ](#faq)
+- [Licensing](#Licensing)
 
 ---
 
-## Installation
-
-*! Please do NOT send any sensitive and/or personal information to POMA AI endpoints without having a signed contract & DPA !*
+## Installation (SDK)
 
 ```bash
 pip install poma
 ```
-- Requires Python 3.10+
-- Requires `POMA_API_KEY` as env variable, get it [here]() or contact us at **[support@poma-ai.com](mailto:support@poma-ai.com)**
+
+> [!IMPORTANT]  
+> Requires Python 3.10+  
+> Requires `POMA_API_KEY` as env variable, get it [here]() or contact us at **[support@poma-ai.com](mailto:support@poma-ai.com)**
+
+The poma client then offers three endpoints:
+- Use `start_chunk_file()` to start the chunking process.
+- With `get_chunk_result()` you can download the result after it finished processing.
+- And `create_cheatsheets()` is used at retrieval time.  
+
+See [How POMA AI Works](#how-poma-ai-works-the-structural-chunking-workflow) for more details in the workflow.
+
+> [!WARNING]  
+> *Please do NOT send any sensitive and/or personal information to POMA AI endpoints without having a signed contract & DPA !*
 
 ---
 
@@ -66,7 +80,9 @@ pip install 'poma[integrations]'
 ```bash
 pip install 'poma[integration-examples]'
 ```
-*Note: The integration examples use OpenAI embeddings. Make sure to set your `OPENAI_API_KEY` as environment variable.*
+
+> [!NOTE]  
+> *The integration examples use OpenAI embeddings. Make sure to set your `OPENAI_API_KEY` as environment variable.*
 
 ### Standalone Implementation - [example.py](https://github.com/poma-ai/.github/tree/main/examples/example.py)
 
@@ -76,17 +92,18 @@ Use your CLI with these ingest and retrieve commands (from inside the examples d
 ```bash
 cd examples
 ```
-**Ingest** a document to create structured chunks and [chunksets](#), which are stored locally.
+**Ingest** a document to create structured *chunks* and *[chunksets](#what-exactly-is-a-chunkset)*, which are stored locally.
 ```bash
 python example.py ingest Coffee.txt
 ```
-**Retrieve** with a query to find relevant information; returns one [cheatsheet](#) per "affected" document.
+**Retrieve** with a query to find relevant information; returns one *[cheatsheet](#what-exactly-is-a-cheatsheet)* per "affected" document.
 ```bash
 python example.py retrieve "finland"
 ```
 *Swap the simple keyword search with your vector/full-text DB, and you have a minimal RAG loop. See example_langchain.py and example_llamaindex.py for full integrations.*
 
-*Note: In POMA AI, the units you embed are [chunksets](#) — structure-preserving contexts, **NOT** isolated chunks.*
+> [!NOTE]  
+> In POMA AI, the units you embed are *[chunksets](#what-exactly-is-a-chunkset)* — structure-preserving contexts, **NOT** isolated *chunks*.
 
 ### LangChain Integration - [example_langchain.py](https://github.com/poma-ai/.github/tree/main/examples/example_langchain.py)
 
@@ -94,12 +111,10 @@ Integrate POMA AI with LangChain’s retrieval and QA components.
 
 - Uses PomaFileLoader, PomaChunksetSplitter, PomaCheatsheetRetrieverLC from poma.integrations.langchain_poma
   and POMA AI's API to chunk text.
-- Stores chunks and [chunksets](#) in LangChains Document Metadata for later retrieval.
-- FAISS vector search with OpenAI embeddings — *Make sure to set your `OPENAI_API_KEY` as environment variable.*
+- Stores *chunks* and *[chunksets](#what-exactly-is-a-chunkset)* in LangChains Document Metadata for later retrieval.
+- FAISS vector search with OpenAI embeddings — Make sure to set your `OPENAI_API_KEY` as environment variable.
 - QA chain using LangChain’s LCEL
-- Custom [cheatsheet](#) retriever for context-aware retrieval
-
-*Note: In POMA AI, the units you embed are [chunksets](#) — structure-preserving contexts, **NOT** isolated chunks.*
+- Custom *[cheatsheet](#what-exactly-is-a-cheatsheet)* retriever for context-aware retrieval
 
 ### LlamaIndex Integration - [example_llamaindex.py](https://github.com/poma-ai/.github/tree/main/examples/example_llamaindex.py)
 
@@ -107,25 +122,23 @@ Use POMA AI with LlamaIndex’s document processing and query engine.
 
 - Uses PomaFileReader, PomaChunksetNodeParser, PomaCheatsheetRetrieverLI from poma.integrations.llamaindex_poma
   and POMA AI's API to chunk text.
-- Stores chunks and [chunksets](#) in LlamaIndex Nodes Metadata for later retrieval.
-- VectorStoreIndex (implemented with FAISS) and OpenAI embeddings — *Make sure to set your `OPENAI_API_KEY` as environment variable.*
+- Stores *chunks* and *[chunksets](#what-exactly-is-a-chunkset)* in LlamaIndex Nodes Metadata for later retrieval.
+- VectorStoreIndex (implemented with FAISS) and OpenAI embeddings — Make sure to set your `OPENAI_API_KEY` as environment variable.
 - Using LlamaIndex as_query_engine upon the retriever
-- Custom [cheatsheet](#) retriever for context-aware retrieval
-
-*Note: In POMA AI, the units you embed are [chunksets](#) — structure-preserving contexts, **NOT** isolated chunks.*
+- Custom *[cheatsheet](#what-exactly-is-a-cheatsheet)* retriever for context-aware retrieval
 
 ---
 
 ## Why POMA AI?
 
-Retrieval-augmented generation (RAG) enables LLMs to better answer questions by utilizing external documents. But if you feed LLMs linear, structureless chunks, you get:
+Retrieval-augmented generation (RAG) enables LLMs to better answer questions by utilizing external documents. But if you feed LLMs linear, structureless chunks you get:
 - Orphaned headings (a title with no details)
 - Fragmented lists (missing key info)
 - Chapter–Article Disconnection (context lost)
 - Bloated prompts (wasted tokens)
 - Hallucinated or incomplete answers
 
-Linear chunking splits docs by tokens or lines — ignoring real-world structure. Tools like LlamaIndex default to this, but it fails for anything hierarchical: laws, manuals, policies, contracts, technical docs.
+Linear chunking splits docs by tokens or lines — ignoring real-world structure. Tools like LlamaIndex default to this, but linear chunking fails for anything hierarchical: laws, manuals, policies, contracts, technical docs.
 
 ### Failure Cases of Linear Chunking (with Real-World Impact)
 
@@ -137,7 +150,7 @@ Linear chunking splits docs by tokens or lines — ignoring real-world structure
 2) **Fragmented Lists** → partial information  
    Chunk A (retrieved):  
    “a) 2 letters and 3 digits: 300 euros; b) 3 letters and 2 digits: 500 euros; c) 4 letters and 1 digit: 1,000 euros; d) 5 letters: 3,000 euros;”  
-   Chunk B (missing):   “e) Less than 5 characters: 6,000 euros”  
+   Chunk B (missing): “e) Less than 5 characters: 6,000 euros”  
    Impact: Missing premium fees; compliance failures or financial errors.  
 
 3) **Chapter–Article Disconnection** → ambiguity and misattribution  
@@ -156,12 +169,12 @@ Including neighboring chunks seems to be the method of choice for most chunkers,
 and still misses structural boundaries.
 
 Other proposed solutions use auto-summarization or guessed relations, relying on heuristics rather than true document structure, to create additional "context" information for chunks thus  
-→ losing accuracy (through abtractions)  
+→ losing accuracy (through abstractions)  
 → and risking hallucinations.
 
 ---
 
-## How POMA AI Works - Structural Chunking
+## How POMA AI Works - The Structural Chunking Workflow
 
 Rather than slicing blindly or extracting structure from messy documents using brittle heuristics, POMA AI re-generates documents by using powerful generative intelligence and creating structural coherence inside these documents.
 
@@ -169,9 +182,12 @@ Rather than slicing blindly or extracting structure from messy documents using b
 
 ```
 +----------------+     \    +----------------+
-| (unstructured) |  ----\   |      POMA      |
-|   documents    |  ----/   |  client - API  |
+| (unstructured) |  ----\   |    POMA SDK    |
+|   documents    |  ----/   |     client     |
 +--------+-------+     /    +--------+-------+
+                            start_chunk_file()
+                                    +
+                            get_chunk_result()
                                     |
                                     v
                          (chunks[], chunksets[])
@@ -179,19 +195,21 @@ Rather than slicing blindly or extracting structure from messy documents using b
                               v            v
 
 Vector/Keyword  <---- Index chunksets in your DB, also store chunks
+                                    …
 search/retrieve ----> Retrieve relevant chunksets (context trees)
                                     |
                                     v
                         Get all chunk_IDs referenced
                         in the retrieved chunksets
+                                    +
+                       Get content for these chunk_IDs
                                     |
                                     v
-                      Get content for these chunk_IDs
-                            (content_chunks)
-                                    |
-                                    v
-                          Generate cheatsheets
-              (from relevant_chunksets and content_chunks)
+                           +----------------+
+                           |    POMA SDK    |
+                           |     client     |
+                           +--------+-------+
+                          create_cheatsheets()
                                     |
                                     v
                       Use cheatsheet(s) in LLM prompt
@@ -199,106 +217,111 @@ search/retrieve ----> Retrieve relevant chunksets (context trees)
 
 ## Key Concepts
 
-POMA AI convertd documents into structurally aware *chunks* and lossless *chunksets*. *Chunksets* can then be embedded and later used to create *cheatsheets*, a compact representation of the retrieved information, optimized for LLM consumption. This approach ensures full structure preservation, enabling accurate retrieval and context assembly.
+POMA AI converts documents into structurally aware *chunks* and lossless *chunksets*. *Chunksets* can then be embedded and later used to create *cheatsheets*, a compact representation of the retrieved information, optimized for LLM consumption. This approach ensures full structure preservation, enabling accurate retrieval and context assembly.
 
-### Phase 1 (Ingestion)
+### Step 1 - Structural Chunking (Ingestion)
 
 SDK:
 ```
-chunks, chunksets = client.start_chunk_file(src_path) # save + embed
+json = client.start_chunk_file(src_path)
+result = client.get_chunk_result(job_id_from_json)
+chunks, chunksets = result["chunks"], result["chunksets"]
 ```
 
-### Phase 1.1 (Ingestion): Structural Chunking - Creating Chunks with Depth
+### Step 1.1 - Creating Chunks with Depth
 
-**Input**: Cleaned and normalized text
+**Input**: your documents ([supported types](#Features))
 
 **Process**:
-- Text is analyzed and structural relationships between sentences are identified
-- Each sentence is assigned a depth in the hierarchy
+- Text is analyzed and structural relationships between sentences / text units are identified
+- Each sentence / text unit is assigned a depth in the hierarchy
 
 **Output**: Short, granular, context aware chunks with assigned depth
 ```
-chunks[{'content': 'some text', 'depth': 0, 'chunk_index': 0}, ...]
+chunks[{'chunk_index': 0, 'content': 'some text', 'depth': 0}, ...]
 ```
-*We recommend storing the chunks separately in a relational database for faster and safer vector database retrieval*
+*We recommend storing the chunks separately in a relational database for faster and safer retrieval*
 
-### Phase 1.2 (Ingestion): Building Chunksets
+### Step 1.2 - Building Chunksets
 
 **Input**: *chunks* with depth information
 
 **Process**:
 - Chunks are grouped into semantic units
 - Complete root-to-leaf paths are created
-- Parent–child relationships are preserve
-- Full hierarchical context is maintained
+- Parent–child relationships are preserve, full hierarchical context is maintained
 
 **Output**: chunksets containing complete contextual paths
 ```
-[{'chunkset_index': 0, 'chunks': [0, 1, 2, 3, 4], 'contents': 'combined chunk texts (text to embed)'}, ...]
+[{'chunkset_index': 0, 'chunks': [0, 1, 2, 3, 4], 'contents': 'combined chunk texts (to embed)'}, ...]
 ```
+*Embed these and store them for later retrieval.*
 
-### What exactly is a Chunkset?
+> ### What exactly is a Chunkset?
+> First of all a chunkset is a "set of chunks", a sequence of single sentences or chunks (usually one sentence is one chunk).  
+> Secondly a chunkset is a complete root-to-leaf path for every "leaf chunk" in a document, for example: `title → chapter → section → clause`, with the clause being the "leaf" and the title being the "root".  
+> Thus chunksets preserve the complete hierarchical context for every chunk in a document - from document root to specific details.
+> This ensures:
+> - Headings are never separated from their content
+> - Lists remain intact with all items
+> - Hierarchical relationships between sections are preserved
+> - Context is never lost during retrieval
+> So chunksets are also meaningful parts of text, enabling accurate retrieval and context assembly.
 
-First of all a chunkset is a "set of chunks", a sequence of single sentences - usually one sentence is one chunk.  
-Secondly a chunkset is a complete root-to-leaf path for every "leaf chunk" in a document, for example: `title → chapter → section → clause`, with the clause being the "leaf" and the title being the "root".  
-Thus chunksets preserve the complete hierarchical context, from document root to specific details, ensuring that:
-- Headings are never separated from their content
-- Lists remain intact with all items
-- Hierarchical relationships between sections are preserved
-- Context is never lost during retrieval
-So chunksets are also meaningful parts of text that later enabling accurate retrieval and context assembly.
+> [!NOTE]  
+> When comparing traditional chunks with POMA AI's chunking result, *chunksets* are the correct counter part.  
+> POMA AI's *chunks* are very short and used solely to make up the root-to-leaf paths we call *chunksets*.  
+> **Chunksets are the fundamental unit of storage and retrieval in POMA AI.**
 
-When comparing traditional chunks with POMA's chunking result chunksets are the correct counter part. POMA's chunks are very short and use solely to make up the root-to-leaf paths we call chunksets.  
-*Chunksets are the fundamental unit of storage and retrieval in POMA AI.*
+### Step 2 - Cheatsheet Assembly (Retrieval)
 
-### Phase 3 (Retrieval): Cheatsheet Assembly (Final LLM Input)
+Use your vector or full-text search to retrieve query relevant chunksets (could be from different documents). Also collect all chunks indicated by the relevant chunksets (indicated in the `chunks` field of the relevant [chunksets](#what-exactly-is-a-chunkset)).
 
-**Input**: relevant *chunksets* (full context paths) and all necessary *chunks* (sentences with structure)
-*Necessary are all chunks belonging to the chunksets, indicated in the `chunks` field of the relevant chunksets.*
+**Input**: relevant *chunksets* (complete root-to-leaf paths) and all necessary *chunks* (single sentences with depth information)
 
-Use your vector or full-text search to retrieve query relevant chunksets (could be from different documents). Also collect all chunks indicated by the relevant chunksets (see `chunks` field in chunksets).
 ```
 [{'chunkset_index': 0, 'chunks': [0, 1, 2, 3, 4], ...}, ...]
 ```
 
 **Process**:
 - Overlapping content is deduplicated while preserving structural relationships (per document)
-- The information is formatted hierarchically
 - Parents, children, and adjacent chunks are added as needed to ensure structural continuity
+- All information is formatted hierarchically
 
-**Output**: Deduplicated context information - we call them *cheatsheets* - ready for efficient use in any RAG pipeline. (Use them as the input for LlamaIndex, LangChain, or custom retrieval engines — in place of their default flat chunkers and retrievers.)  
-If all chunksets necessary to answer a query originate from the same document one single cheatsheet is produced, otherwise as many cheatsheets as documents involved.
+**Output**: The final LLM context information ready for efficient use in any RAG pipeline. We call them [cheatsheets](#what-exactly-is-a-cheatsheet). Use them as the input for LlamaIndex, LangChain, or custom retrieval engines — in place of their default flat chunkers and retrievers.  
+If all chunksets necessary to answer a query originate from the same document only one single cheatsheet is produced, otherwise you get as many cheatsheets as documents involved.
 
 SDK:
 ```python
 cheatsheets = client.generate_cheatsheets(relevant_chunksets, all_necessary_chunks)
 ```
-
-### What exactly is a Cheatsheet?
-
-*Cheatsheets provide the LLM with precisely the **context** it needs to answer queries accurately, without wasting tokens on redundant information.*  
-It is a compact representation of the retrieved information. It comprises several relevant chunksets (and their metadata ???), deduplicated and optimized for LLM consumption.
-
-Cheatsheet characteristics:
-- Single coherent context block
-- Hierarchical relationships preserved
-- Logical, structured organization
-- LLM-friendly ellipses ([…]) indicate omitted content
-- Deduplicated content to minimize token usage
-
-Example input:
-```python
-# Vector search returns chunksets (complete root-to-leaf paths)
-retrieved_chunksets = [
-  {"chunkset_index": 0, "chunks": [0, 10, 16, 17], "file_id": "doc_1"},
-  {"chunkset_index": 1, "chunks": [0, 4, 5, 6], "file_id": "doc_2"}
-]
-```
-
-Example output (conceptual, IDs only for brevity):
-```
-[0, 4, 5, 6, 10, 16, 17]
-```
+ 
+> ### What exactly is a Cheatsheet?
+> 
+> *Cheatsheets provide the LLM with precisely the **context** it needs to answer queries accurately, without wasting tokens on redundant information.*  
+> It is a compact representation of the retrieved information. It comprises several relevant chunksets, deduplicated and optimized for LLM consumption.  
+> We call them *cheatsheets* because they are compact summaries of the most important points on a topic, like the ones none of us use during a test or exam.
+> 
+> Cheatsheet characteristics:
+> - Single coherent context block
+> - Hierarchical relationships preserved
+> - Logical, structured organization
+> - LLM-friendly ellipses ([…]) indicate omitted content
+> - Deduplicated content to minimize token usage
+> - One cheatsheet per as document involved
+> 
+> Example input:
+> ```python
+> retrieved_chunksets = [
+>   {"chunkset_index": 0, "chunks": [0, 10, 16, 17], "file_id": "doc_1"},
+>   {"chunkset_index": 1, "chunks": [0, 4, 5, 6], "file_id": "doc_2"}
+> ]
+> ```
+> 
+> Example output (conceptual, IDs only for brevity):
+> ```
+> [0, 4, 5, 6, 10, 16, 17]
+> ```
 
 ---
 
@@ -312,18 +335,6 @@ This efficiency enables energy and cost savings and/or more context within token
 
 ---
 
-## Licensing
-
-Usage of the POMA AI API & ecosystem under [MPL-2.0](LICENSE).
-
----
-
-## Release History (SDK)
-
-- v0.1.x (Oct 2025): Initial public release
-
----
-
 ## FAQ
 
 We’ll start building out this FAQ as soon as we receive the first real questions from users.  
@@ -331,4 +342,10 @@ If you have a question, suggestion, or found something unclear in our readme, pl
 **sdk@poma-ai.com**
 
 Your feedback will help us expand this section into a valuable reference for everyone.
+
+---
+
+## Licensing
+
+Usage of the POMA AI API & ecosystem under [MPL-2.0](LICENSE).
 
