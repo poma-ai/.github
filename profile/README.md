@@ -347,5 +347,5 @@ Your feedback will help us expand this section into a valuable reference for eve
 
 ## Licensing
 
-Usage of the POMA AI API & ecosystem under [MPL-2.0](LICENSE).
+Usage of the POMA AI API & ecosystem under [MPL-2.0](../LICENSE).
 
