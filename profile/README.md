@@ -52,7 +52,7 @@ pip install poma
 The poma client then offers three endpoints:
 - Use `start_chunk_file()` to start the chunking process.
 - With `get_chunk_result()` you can download the result after it finished processing.
-- And `create_cheatsheets()` is used at retrieval time.  
+- And `create_cheatsheets()` is used at retrieval time (locally, no API).  
 
 See [How POMA AI Works](#How-POMA-AI-Works---The-Structural-Chunking-Workflow) for more details in the workflow.
 
@@ -183,7 +183,7 @@ Rather than slicing blindly or extracting structure from messy documents using b
 ```
 +----------------+     \    +----------------+
 | (unstructured) |  ----\   |    POMA SDK    |
-|   documents    |  ----/   |     client     |
+|   documents    |  ----/   |  (API client)  |
 +--------+-------+     /    +--------+-------+
                             start_chunk_file()
                                     +
@@ -207,7 +207,7 @@ search/retrieve ----> Retrieve relevant chunksets (context trees)
                                     v
                            +----------------+
                            |    POMA SDK    |
-                           |     client     |
+                           |    (local)     |
                            +--------+-------+
                           create_cheatsheets()
                                     |
@@ -300,7 +300,7 @@ cheatsheets = client.generate_cheatsheets(relevant_chunksets, all_necessary_chun
 > 
 > *Cheatsheets provide the LLM with precisely the **context** it needs to answer queries accurately, without wasting tokens on redundant information.*  
 > It is a compact representation of the retrieved information. It comprises several relevant chunksets, deduplicated and optimized for LLM consumption.  
-> We call them *cheatsheets* because they are compact summaries of the most important points on a topic, like the ones none of us use during a test or exam.
+> We call them *cheatsheets* because they are compact compilations of the most important points on a topic, like the ones none of us used during a test or exam…
 > 
 > Cheatsheet characteristics:
 > - Single coherent context block
