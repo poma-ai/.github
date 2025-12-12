@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/patented%20at%20USPTO-8A2BE2)]() 
 [![](https://img.shields.io/badge/patented%20at%20DPA-8A2BE2)]() 
 [![](https://img.shields.io/badge/pypi-repo-blue?logo=pypi)](https://pypi.org/project/poma/) 
-[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)   
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](../LICENSE)   
  
 ## Problem
 
