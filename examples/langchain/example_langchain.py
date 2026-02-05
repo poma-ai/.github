@@ -5,7 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from poma import Poma
-from poma.integrations.langchain_poma import (
+from poma.integrations.langchain import (
     PomaFileLoader,
     PomaChunksetSplitter,
     PomaCheatsheetRetrieverLC,

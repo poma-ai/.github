@@ -5,7 +5,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 from poma import Poma
-from poma.integrations.llamaindex_poma import (
+from poma.integrations.llamaindex import (
     PomaFileReader,
     PomaChunksetNodeParser,
     PomaCheatsheetRetrieverLI,
