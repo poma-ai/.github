@@ -35,7 +35,7 @@ LLM_MODEL = "gpt-4o"  # <= or any model your OpenAI key allows
 #############
 
 
-INPUT_PATH = LOCAL_DIR / "Coffee.txt"
+INPUT_PATH = LOCAL_DIR.parent / "Coffee.txt"
 try:
     print("Starting ingestion…")
     docs = PomaFileReader().load_data(str(INPUT_PATH))

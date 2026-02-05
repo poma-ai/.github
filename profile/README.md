@@ -63,64 +63,67 @@ See [How POMA AI Works](#How-POMA-AI-Works---The-Structural-Chunking-Workflow) f
 
 ## Integrations
 
-We provide four example implementations to help you get started with POMA AI:
+We provide three example implementations to help you get started with POMA AI:
 1. Standalone implementation (basic POMA AI workflow with simple keyword-based retrieval)
 2. Integration with LangChain
 3. Integration with LlamaIndex
 
-| Module             | What it does                               | PyPI / wheel       | License | Link |
-|--------------------|--------------------------------------------|--------------------|---------|------|
-| poma(sdk)          | Build depth-aware chunks & chunksets       | poma               | MPL-2.0 |[pypi](https://pypi.org/project/poma/)|
-| poma(integrations) | Drop-in classes for LangChain / LlamaIndex | poma[integrations] | MPL-2.0 |[github](https://github.com/poma-ai/.github/tree/main/examples)|
+| Module            | What it does                               | Install            | License | Link |
+|-------------------|--------------------------------------------|--------------------|---------|------|
+| poma (core)       | Build depth-aware chunks & chunksets       | `pip install poma` | MPL-2.0 | [pypi](https://pypi.org/project/poma/) |
+| LangChain         | Drop-in classes for LangChain              | `poma[langchain]`  | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/examples) |
+| LlamaIndex        | Drop-in classes for LlamaIndex             | `poma[llamaindex]` | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/examples) |
+| Qdrant            | Qdrant vector store support                | `poma[qdrant]`     | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/examples) |
+| All integrations  | LangChain + LlamaIndex + Qdrant + examples | `poma[all]`        | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/examples) |
 
-Get integrations classes (including examples):
+Install only what you need:
 ```bash
-pip install 'poma[integrations]'
-```
-```bash
-pip install 'poma[integration-examples]'
+pip install 'poma[langchain]'    # LangChain integration
+pip install 'poma[llamaindex]'   # LlamaIndex integration
+pip install 'poma[qdrant]'       # Qdrant vector store
+pip install 'poma[all]'          # All of the above (e.g. to run all examples)
 ```
 
 > [!NOTE]  
 > *The integration examples use OpenAI embeddings. Make sure to set your `OPENAI_API_KEY` as environment variable.*
 
-### Standalone Implementation - [example.py](https://github.com/poma-ai/.github/tree/main/examples/example.py)
+### Standalone Implementation - [example.py](https://github.com/poma-ai/.github/tree/main/examples/poma/example.py)
 
 A complete, self-contained implementation that demonstrates the POMA AI workflow. It uses a keyword-based approach for simplicity, avoiding the need to set up a vector database.
 
-Use your CLI with these ingest and retrieve commands (from inside the examples directory):
+Use your CLI with these ingest and retrieve commands (from inside the examples/poma directory):
 ```bash
-cd examples
+cd examples/poma
 ```
 **Ingest** a document to create structured *chunks* and *[chunksets](#what-exactly-is-a-chunkset)*, which are stored locally.
 ```bash
-python example.py ingest Coffee.txt
+python example.py ingest ../Coffee.txt
 ```
 **Retrieve** with a query to find relevant information; returns one *[cheatsheet](#what-exactly-is-a-cheatsheet)* per "affected" document.
 ```bash
 python example.py retrieve "finland"
 ```
-*Swap the simple keyword search with your vector/full-text DB, and you have a minimal RAG loop. See example_langchain.py and example_llamaindex.py for full integrations.*
+*Swap the simple keyword search with your vector/full-text DB, and you have a minimal RAG loop. See [examples/langchain/example_langchain.py](https://github.com/poma-ai/.github/tree/main/examples/langchain/example_langchain.py) and [examples/llamaindex/example_llamaindex.py](https://github.com/poma-ai/.github/tree/main/examples/llamaindex/example_llamaindex.py) for full integrations.*
 
 > [!NOTE]  
 > In POMA AI, the units you embed are *[chunksets](#what-exactly-is-a-chunkset)* — structure-preserving contexts, **NOT** isolated *chunks*.
 
-### LangChain Integration - [example_langchain.py](https://github.com/poma-ai/.github/tree/main/examples/example_langchain.py)
+### LangChain Integration - [example_langchain.py](https://github.com/poma-ai/.github/tree/main/examples/langchain/example_langchain.py)
 
 Integrate POMA AI with LangChain’s retrieval and QA components.
 
-- Uses PomaFileLoader, PomaChunksetSplitter, PomaCheatsheetRetrieverLC from `poma.integrations.langchain_poma
+- Uses PomaFileLoader, PomaChunksetSplitter, PomaCheatsheetRetrieverLC from `poma.integrations.langchain`
   and POMA AI's API to chunk text.
 - Stores *chunks* and *[chunksets](#what-exactly-is-a-chunkset)* in LangChains Document Metadata for later retrieval.
 - FAISS vector search with OpenAI embeddings — Make sure to set your `OPENAI_API_KEY` as environment variable.
 - QA chain using LangChain’s LCEL
 - Custom *[cheatsheet](#what-exactly-is-a-cheatsheet)* retriever for context-aware retrieval
 
-### LlamaIndex Integration - [example_llamaindex.py](https://github.com/poma-ai/.github/tree/main/examples/example_llamaindex.py)
+### LlamaIndex Integration - [example_llamaindex.py](https://github.com/poma-ai/.github/tree/main/examples/llamaindex/example_llamaindex.py)
 
 Use POMA AI with LlamaIndex’s document processing and query engine.
 
-- Uses PomaFileReader, PomaChunksetNodeParser, PomaCheatsheetRetrieverLI from `poma.integrations.llamaindex_poma`
+- Uses PomaFileReader, PomaChunksetNodeParser, PomaCheatsheetRetrieverLI from `poma.integrations.llamaindex`
   and POMA AI's API to chunk text.
 - Stores *chunks* and *[chunksets](#what-exactly-is-a-chunkset)* in LlamaIndex Nodes Metadata for later retrieval.
 - VectorStoreIndex (implemented with FAISS) and OpenAI embeddings — Make sure to set your `OPENAI_API_KEY` as environment variable.
