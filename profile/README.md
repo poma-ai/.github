@@ -22,7 +22,7 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
 - up to 90% token savings in prompt context for structured docs
 - Plug-in to any RAG pipeline
 - Supported input types:
-  <details>
+  <details id="supported-formats">
   <summary> .pdf, .md, .html, .txt, and many more</summary>
    ['ai', 'bmp', 'csv', 'djvu', 'doc', 'docx', 'dotx', 'dwf', 'dwfx', 'dwg', 'dxf', 'eps', 'epub', 'gif', 'heic', 'heif', 'htm', 'html', 'ico', 'jpeg', 'jpg', 'key', 'md', 'mdi', 'mobi', 'numbers', 'odc', 'odf', 'odp', 'ods', 'odt', 'oxps', 'pages', 'pdf', 'png', 'pot', 'potx', 'pps', 'ppsx', 'ppt', 'pptx', 'prn', 'ps', 'psd', 'pub', 'rtf', 'svg', 'tif', 'tiff', 'txt', 'vsd', 'vsdx', 'webp', 'xls', 'xlsb', 'xlsx', 'xltx', 'xml', 'xps']
   </details>
@@ -73,8 +73,8 @@ We provide three example implementations to help you get started with POMA AI:
 | poma (core)       | Build depth-aware chunks & chunksets       | `pip install poma` | MPL-2.0 | [pypi](https://pypi.org/project/poma/) |
 | LangChain         | Drop-in classes for LangChain              | `poma[langchain]`  | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/examples) |
 | LlamaIndex        | Drop-in classes for LlamaIndex             | `poma[llamaindex]` | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/examples) |
-| Qdrant            | Qdrant vector store support                | `poma[qdrant]`     | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/examples) |
-| All integrations  | LangChain + LlamaIndex + Qdrant + examples | `poma[all]`        | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/examples) |
+| Qdrant            | Qdrant vector store support                | `poma[qdrant]`     | MPL-2.0 | [github](https://github.com/poma-ai/.github/tree/main/notebooks/qdrant) |
+| All integrations  | LangChain + LlamaIndex + Qdrant + examples | `poma[all]`        | MPL-2.0 | |
 
 Install only what you need:
 ```bash
