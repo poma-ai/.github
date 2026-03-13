@@ -220,7 +220,19 @@ search/retrieve ----> Retrieve relevant chunksets (context trees)
 
 ## Key Concepts
 
-POMA AI converts documents into structurally aware *chunks* and lossless *chunksets*. *Chunksets* can then be embedded and later used to create *cheatsheets*, a compact representation of the retrieved information, optimized for LLM consumption. This approach ensures full structure preservation, enabling accurate retrieval and context assembly.
+POMA AI converts documents into structurally aware *chunks* and lossless *chunksets*. *Chunksets* can then be embedded and later used to create *cheatsheets*, a compact representation of the retrieved information, optimized for LLM consumption. This approach ensures full structure preservation, enabling accurate retrieval and context assembly. You can also save the -file, which is basically a .zip-file including all additional assets; when you set the parameters download_dir and filename, in get_chunk_result. If only one is set, the default download dir will be the one the script is running in or the filename will be sautomatically created.
+
+### The POMA File
+
+You can save the [.poma](https://app.poma-ai.com/poma-extension)-file, which is essentially a `.zip` archive containing all associated assets.
+
+To enable this, set the `download_dir` and/or `filename` parameters when calling `get_chunk_result` (see [examples](https://github.com/poma-ai/.github/tree/main/examples)).
+
+Behavior:
+- If both `download_dir` and `filename` are provided, the file is saved exactly as specified.
+- If only `download_dir` is provided, the filename is generated automatically.
+- If only `filename` is provided, the file is saved in the current working directory.
+
 
 ### Step 1 - Structural Chunking (Ingestion)
 
