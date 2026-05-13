@@ -25,6 +25,8 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
   <details id="supported-formats">
   <summary> .pdf, .md, .html, .txt, .png, and many more</summary>
 
+  &nbsp;
+
   **Native:**
   - **Documents & text:** PDF, Markdown, HTML, TXT
   - **Images:** PNG, JPEG, GIF, SVG
