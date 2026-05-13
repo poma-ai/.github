@@ -22,25 +22,15 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
 - up to 90% token savings in prompt context for structured docs
 - Plug-in to any RAG pipeline
 - Supported input types:
-  <details id="supported-formats">
-  <summary> .pdf, .md, .html, .txt, .png, and many more</summary>
 
-  &nbsp;
-
-  **Native:**
+  Native:
   - **Documents & text:** PDF, Markdown, HTML, TXT
   - **Images:** PNG, JPEG, GIF, SVG
   - **Structured data:** XML (and XML-based: XSD, XSLT, RSS, Atom, KML, OPML, GPX, TCX), JSON (incl. JSON5, GeoJSON), YAML, TOML, INI (incl. `.cfg` / `.conf`), `.env`, CIR (SPICE netlists), CSV, TSV
   - **Spreadsheets:** XLSX, XLS, XLSB
 
-  &nbsp;
-
-  **Auto-converted:**
+  Auto-converted:
   - BMP, HEIC, HEIF, ICO, TIFF, WEBP, AI, DWF, DWFX, DWG, DXF, PSD, DJVU, DOC, DOCX, DOTX, EPS, EPUB, KEY, MDI, MOBI, NUMBERS, ODC, ODF, ODP, ODS, ODT, OXPS, PAGES, POT, POTX, PPS, PPSX, PPT, PPTX, PRN, PS, PUB, RTF, VSD, VSDX, XLTX, XPS
-
-  &nbsp;
-
-  </details>
 
 ---
 
