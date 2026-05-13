@@ -31,9 +31,13 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
   - **Structured data:** XML (and XML-based: XSD, XSLT, RSS, Atom, KML, OPML, GPX, TCX), JSON (incl. JSON5, GeoJSON), YAML, TOML, INI (incl. `.cfg` / `.conf`), `.env`, CIR (SPICE netlists), CSV, TSV
   - **Spreadsheets:** XLSX, XLS, XLSB
 
+  &nbsp;
+
   **Auto-converted:**
   - BMP, HEIC, HEIF, ICO, TIFF, WEBP, AI, DWF, DWFX, DWG, DXF, PSD, DJVU, DOC, DOCX, DOTX, EPS, EPUB, KEY, MDI, MOBI, NUMBERS, ODC, ODF, ODP, ODS, ODT, OXPS, PAGES, POT, POTX, PPS, PPSX, PPT, PPTX, PRN, PS, PUB, RTF, VSD, VSDX, XLTX, XPS
-    
+
+  &nbsp;
+
   </details>
 
 ---
