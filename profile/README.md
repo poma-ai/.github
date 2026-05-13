@@ -1,7 +1,7 @@
 ![POMA AI Logo](https://raw.githubusercontent.com/poma-ai/.github/main/assets/POMA_AI_Logo_Pink.svg)
 
-[![](https://img.shields.io/badge/patented%20at%20USPTO-8A2BE2)]() 
-[![](https://img.shields.io/badge/patented%20at%20DPA-8A2BE2)]() 
+[![](https://img.shields.io/badge/patented%20at%20USPTO-8A2BE2)](https://worldwide.espacenet.com/publicationDetails/biblio?CC=US&NR=12517941) 
+[![](https://img.shields.io/badge/patented%20at%20DPA-8A2BE2)](https://register.dpma.de/DPMAregister/pat/PatSchrifteneinsicht?docId=DE202025101876U1&page=1&lang=de&reqToken=-stMm2PZJ0Dgcp1ubTin3wnS-vHnIN5gndeNr0c8bnNrm665CkNmCOoNK2BjzvEt) 
 [![](https://img.shields.io/badge/pypi-repo-blue?logo=pypi)](https://pypi.org/project/poma/) 
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](../LICENSE)   
  
@@ -31,7 +31,9 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
   - **Structured data:** XML (and XML-based: XSD, XSLT, RSS, Atom, KML, OPML, GPX, TCX), JSON (incl. JSON5, GeoJSON), YAML, TOML, INI (incl. `.cfg` / `.conf`), `.env`, CIR (SPICE netlists), CSV, TSV
   - **Spreadsheets:** XLSX, XLS, XLSB
 
-  **Auto-converted:** BMP, HEIC, HEIF, ICO, TIFF, WEBP, AI, DWF, DWFX, DWG, DXF, PSD, DJVU, DOC, DOCX, DOTX, EPS, EPUB, KEY, MDI, MOBI, NUMBERS, ODC, ODF, ODP, ODS, ODT, OXPS, PAGES, POT, POTX, PPS, PPSX, PPT, PPTX, PRN, PS, PUB, RTF, VSD, VSDX, XLTX, XPS
+  **Auto-converted:**
+  - BMP, HEIC, HEIF, ICO, TIFF, WEBP, AI, DWF, DWFX, DWG, DXF, PSD, DJVU, DOC, DOCX, DOTX, EPS, EPUB, KEY, MDI, MOBI, NUMBERS, ODC, ODF, ODP, ODS, ODT, OXPS, PAGES, POT, POTX, PPS, PPSX, PPT, PPTX, PRN, PS, PUB, RTF, VSD, VSDX, XLTX, XPS
+    
   </details>
 
 ---
