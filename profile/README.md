@@ -23,8 +23,15 @@ Use POMA AI's **structural chunking** inside your RAG pipeline; integrate it wit
 - Plug-in to any RAG pipeline
 - Supported input types:
   <details id="supported-formats">
-  <summary> .pdf, .md, .html, .txt, and many more</summary>
-   ['ai', 'bmp', 'csv', 'djvu', 'doc', 'docx', 'dotx', 'dwf', 'dwfx', 'dwg', 'dxf', 'eps', 'epub', 'gif', 'heic', 'heif', 'htm', 'html', 'ico', 'jpeg', 'jpg', 'key', 'md', 'mdi', 'mobi', 'numbers', 'odc', 'odf', 'odp', 'ods', 'odt', 'oxps', 'pages', 'pdf', 'png', 'pot', 'potx', 'pps', 'ppsx', 'ppt', 'pptx', 'prn', 'ps', 'psd', 'pub', 'rtf', 'svg', 'tif', 'tiff', 'txt', 'vsd', 'vsdx', 'webp', 'xls', 'xlsb', 'xlsx', 'xltx', 'xml', 'xps']
+  <summary> .pdf, .md, .html, .txt, .png, and many more</summary>
+
+  **Native:**
+  - **Documents & text:** PDF, Markdown, HTML, TXT
+  - **Images:** PNG, JPEG, GIF, SVG
+  - **Structured data:** XML (and XML-based: XSD, XSLT, RSS, Atom, KML, OPML, GPX, TCX), JSON (incl. JSON5, GeoJSON), YAML, TOML, INI (incl. `.cfg` / `.conf`), `.env`, CIR (SPICE netlists), CSV, TSV
+  - **Spreadsheets:** XLSX, XLS, XLSB
+
+  **Auto-converted:** BMP, HEIC, HEIF, ICO, TIFF, WEBP, AI, DWF, DWFX, DWG, DXF, PSD, DJVU, DOC, DOCX, DOTX, EPS, EPUB, KEY, MDI, MOBI, NUMBERS, ODC, ODF, ODP, ODS, ODT, OXPS, PAGES, POT, POTX, PPS, PPSX, PPT, PPTX, PRN, PS, PUB, RTF, VSD, VSDX, XLTX, XPS
   </details>
 
 ---
@@ -47,7 +54,7 @@ pip install poma
 
 > [!IMPORTANT]  
 > Requires Python 3.10+  
-> Requires `POMA_API_KEY` as env variable (sign up for free and get it [here](https://app.poma-ai.com).
+> Requires `POMA_API_KEY` as env variable (sign up for free and get it [here](https://app.poma-ai.com)).
 
 The poma client then offers three endpoints:
 - Use `start_chunk_file()` to start the chunking process.
@@ -181,7 +188,7 @@ Other proposed solutions use auto-summarization or guessed relations, relying on
 
 Rather than slicing blindly or extracting structure from messy documents using brittle heuristics, POMA AI re-generates documents by using powerful generative intelligence and creating structural coherence inside these documents.
 
-## The Processing Pipeline
+### The Processing Pipeline
 
 ```
 +----------------+     \    +----------------+
@@ -218,9 +225,7 @@ search/retrieve ----> Retrieve relevant chunksets (context trees)
                       Use cheatsheet(s) in LLM prompt
 ```
 
-## Key Concepts
-
-POMA AI converts documents into structurally aware *chunks* and lossless *chunksets*. *Chunksets* can then be embedded and later used to create *cheatsheets*, a compact representation of the retrieved information, optimized for LLM consumption. This approach ensures full structure preservation, enabling accurate retrieval and context assembly. You can also save the -file, which is basically a .zip-file including all additional assets; when you set the parameters download_dir and filename, in get_chunk_result. If only one is set, the default download dir will be the one the script is running in or the filename will be sautomatically created.
+POMA AI converts documents into structurally aware *chunks* and lossless *chunksets*. *Chunksets* can then be embedded and later used to create *cheatsheets*, a compact representation of the retrieved information, optimized for LLM consumption. This approach ensures full structure preservation, enabling accurate retrieval and context assembly.
 
 ### The POMA File
 
@@ -243,7 +248,7 @@ result = client.get_chunk_result(job_id_from_json)
 chunks, chunksets = result["chunks"], result["chunksets"]
 ```
 
-### Step 1.1 - Creating Chunks with Depth
+#### Step 1.1 - Creating Chunks with Depth
 
 **Input**: your documents ([supported types](#Features))
 
@@ -257,14 +262,14 @@ chunks[{'chunk_index': 0, 'content': 'some text', 'depth': 0}, ...]
 ```
 *We recommend storing the chunks separately in a relational database for faster and safer retrieval.*
 
-### Step 1.2 - Building Chunksets
+#### Step 1.2 - Building Chunksets
 
 **Input**: *chunks* with depth information
 
 **Process**:
 - Chunks are grouped into semantic units
 - Complete root-to-leaf paths are created
-- Parent–child relationships are preserve, full hierarchical context is maintained
+- Parent–child relationships are preserved, full hierarchical context is maintained
 
 **Output**: chunksets containing complete contextual paths
 ```
@@ -323,7 +328,7 @@ cheatsheets = client.generate_cheatsheets(relevant_chunksets, all_necessary_chun
 > - Logical, structured organization
 > - LLM-friendly ellipses ([…]) indicate omitted content
 > - Deduplicated content to minimize token usage
-> - One cheatsheet per as document involved
+> - One cheatsheet per document involved
 > 
 > Example input:
 > ```python
