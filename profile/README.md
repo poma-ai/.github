@@ -1,4 +1,4 @@
-![POMA AI Logo](https://raw.githubusercontent.com/poma-ai/.github/main/assets/POMA_AI_Logo_Pink_context.png)
+![POMA AI — Turn any file into AI-searchable context](https://raw.githubusercontent.com/poma-ai/.github/main/assets/POMA_hero_banner.jpg)
 
 [![](https://img.shields.io/badge/patented%20at%20USPTO-8A2BE2)](https://worldwide.espacenet.com/publicationDetails/biblio?CC=US&NR=12517941) 
 [![](https://img.shields.io/badge/patented%20at%20DPA-8A2BE2)](https://register.dpma.de/DPMAregister/pat/PatSchrifteneinsicht?docId=DE202025101876U1&page=1&lang=de&reqToken=-stMm2PZJ0Dgcp1ubTin3wnS-vHnIN5gndeNr0c8bnNrm665CkNmCOoNK2BjzvEt) 
