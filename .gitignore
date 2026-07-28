@@ -60,3 +60,11 @@ nosetests.xml
 snapshot.txt
 venv/
 venv.bak/
+CLAUDE.local.md
+events.jsonl
+.agent/
+.claude/hooks/
+.claude/rules/
+.claude/skills/
+.claude/agents/
+.claude/settings.json
