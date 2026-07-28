@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 from dotenv import load_dotenv
 
-from poma import PrimeCut
+from poma import Poma
 from poma.integrations.llamaindex import (
     PomaFileReader,
     PomaChunksetNodeParser,
@@ -23,7 +23,7 @@ for key in ("OPENAI_API_KEY", "POMA_API_KEY"):
         raise SystemExit(f"Set {key} as env-var or in a .env file")
 
 
-client = PrimeCut(os.environ.get("POMA_API_KEY"))
+client = Poma(os.environ.get("POMA_API_KEY"))
 
 
 LOCAL_DIR = Path(__file__).parent
